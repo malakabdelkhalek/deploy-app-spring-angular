@@ -14,14 +14,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # ✅ NOUVEAU : Installer Java 11
       - name: Set up Java 11
         uses: actions/setup-java@v3
         with:
           java-version: '11'
           distribution: 'temurin'
 
-      # ✅ NOUVEAU : Compiler le backend avec Maven
       - name: Build Spring Boot JAR
         run: mvn clean package -DskipTests
         working-directory: ./springboot/app
