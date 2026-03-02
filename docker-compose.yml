@@ -1,11 +1,11 @@
 version: "3.3"
 services:
   angular-app:
-    image: nouran10/angular-app
+    image: malakabdelkhalek/angular-app:latest
     ports:
       - "0.0.0.0:4200:80"      
   spring-boot-app:
-    image: nouran10/springboot-app
+    image: malakabdelkhalek/springboot-app:latest
     ports:
       - "0.0.0.0:8081:8081"
     environment:
