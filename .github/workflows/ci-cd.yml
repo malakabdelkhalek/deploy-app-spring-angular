@@ -43,15 +43,15 @@ jobs:
         run: docker push malakabdelkhalek/angular-app:latest
 
       - name: Start app with Docker Compose
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Wait for services
         run: sleep 30
 
       - name: Check containers
         run: |
-          docker-compose ps
-          docker-compose logs --tail=20
+          docker compose ps
+          docker compose logs --tail=20
 
       - name: Stop containers
-        run: docker-compose down
+        run: docker compose down
