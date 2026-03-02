@@ -29,18 +29,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Build Backend Image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/springboot-app:latest ./springboot/app
+        run: docker build -t malakabdelkhalek/springboot-app:latest ./springboot/app
 
       - name: Push Backend Image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/springboot-app:latest
+        run: docker push malakabdelkhalek/springboot-app:latest
 
       - name: Build Frontend Image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/angular-app:latest ./angular-app
+        run: docker build -t malakabdelkhalek/angular-app:latest ./angular-app
 
       - name: Push Frontend Image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/angular-app:latest
+        run: docker push malakabdelkhalek/angular-app:latest      
 
       - name: Start app with Docker Compose
         run: docker-compose up -d
