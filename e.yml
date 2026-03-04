@@ -1,0 +1,42 @@
+[1mdiff --git a/docker-compose.yml b/docker-compose.yml[m
+[1mindex c46af2b..4bcd134 100644[m
+[1m--- a/docker-compose.yml[m
+[1m+++ b/docker-compose.yml[m
+[36m@@ -1,9 +1,12 @@[m
+[31m-version: "3.3"[m
+[32m+[m[32mversion: '3.3'[m
+ services:[m
+   angular-app:[m
+     image: malakabdelkhalek/angular-app:latest[m
+     ports:[m
+[31m-      - "0.0.0.0:4200:80"      [m
+[32m+[m[32m      - "0.0.0.0:4200:80"[m
+[32m+[m[32m    depends_on:[m
+[32m+[m[32m      - spring-boot-app[m
+[32m+[m
+   spring-boot-app:[m
+     image: malakabdelkhalek/springboot-app:latest[m
+     ports:[m
+[36m@@ -19,7 +22,9 @@[m [mservices:[m
+       - SPRING_MVC_CORS_ALLOWED_METHODS=GET,POST,PUT,DELETE[m
+       - SPRING_MVC_CORS_ALLOWED_HEADERS=*[m
+     depends_on:[m
+[31m-      - mysql[m
+[32m+[m[32m      mysql:[m
+[32m+[m[32m        condition: service_healthy[m
+[32m+[m[32m    restart: on-failure[m
+ [m
+   mysql:[m
+     image: mysql:5.7[m
+[36m@@ -32,5 +37,11 @@[m [mservices:[m
+       - '0.0.0.0:3306:3306'[m
+     volumes:[m
+       - demo:/var/lib/mysql[m
+[32m+[m[32m    healthcheck:[m
+[32m+[m[32m      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"][m
+[32m+[m[32m      interval: 10s[m
+[32m+[m[32m      timeout: 5s[m
+[32m+[m[32m      retries: 5[m
+[32m+[m
+ volumes:[m
+   demo:[m
